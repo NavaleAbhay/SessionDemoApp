@@ -1,0 +1,30 @@
+@using SessionDemo.Models;
+@model SessionDemo.Models.Cart
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<h1>My Shopping Cart</h1>
+<hr/>
+
+<table class="table">
+     <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    </thead> 
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.theProduct.ProductName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td><p>@(item.theProduct.UnitPrice * item.Quantity) </p> </td>
+                <td><a href="/ShoppingCart/remove/@item.theProduct.ID">Remove</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
